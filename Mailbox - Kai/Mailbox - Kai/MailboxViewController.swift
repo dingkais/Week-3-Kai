@@ -58,23 +58,45 @@ class MailboxViewController: UIViewController {
             
             // pan left
             if translation.x < 0 && translation.x >= -60 {
-                messageBackgroundView.backgroundColor = UIColor.lightGrayColor()
+                messageBackgroundView.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
                 laterIcon.alpha = 0
                 listIcon.alpha = 0
             } else if translation.x < -60 && translation.x >= -260 {
                 UIView.animateWithDuration(0.3, animations: { () -> Void in
-                    self.messageBackgroundView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 0, alpha: 1)
+                    self.messageBackgroundView.backgroundColor = UIColor(red: 255/255, green: 211/255, blue: 30/255, alpha: 1)
                     self.laterIcon.alpha = 1
                     self.listIcon.alpha = 0
                 })
 
-            } else {
+            } else if translation.x < -260 {
                 UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.messageBackgroundView.backgroundColor = UIColor.brownColor()
+                self.messageBackgroundView.backgroundColor = UIColor(red: 216/255, green: 166/255, blue: 117/255, alpha: 1)
                 self.laterIcon.alpha = 0
                 self.listIcon.alpha = 1
                 })
             }
+            
+                // pan right
+              else if translation.x > 0 && translation.x <= 60 {
+                messageBackgroundView.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+                archiveIcon.alpha = 0
+                deleteIcon.alpha = 0
+            } else if translation.x > 60 && translation.x <= 260 {
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
+                    self.messageBackgroundView.backgroundColor = UIColor(red: 98/255, green: 217/255, blue: 98/255, alpha: 1)
+                    self.archiveIcon.alpha = 1
+                    self.deleteIcon.alpha = 0
+                })
+            } else if translation.x > 260 {
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
+                    self.messageBackgroundView.backgroundColor = UIColor(red: 238/255, green: 84/255, blue: 10/255, alpha: 1)
+                    self.archiveIcon.alpha = 0
+                    self.deleteIcon.alpha = 1
+                })
+            }
+            
+            
+            
 
             print("Gesture changed at: \(point)-\(translation)-\(velocity) ")
         } else if sender.state == UIGestureRecognizerState.Ended {
@@ -87,8 +109,10 @@ class MailboxViewController: UIViewController {
                 self.messageView.center =  self.messageOriginalCenter
                 self.laterIcon.center = self.rightIconOriginalCenter
                 self.listIcon.center = self.rightIconOriginalCenter
+                self.archiveIcon.center = self.leftIconOriginalCenter
+                self.deleteIcon.center = self.leftIconOriginalCenter
                 }, completion: { (Bool) -> Void in
-                self.messageBackgroundView.backgroundColor = UIColor.lightGrayColor()
+                self.messageBackgroundView.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
                     
             })
             
