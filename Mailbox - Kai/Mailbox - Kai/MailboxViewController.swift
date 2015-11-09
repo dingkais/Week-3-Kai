@@ -21,15 +21,22 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var rescheduleMenu: UIImageView!
     @IBOutlet weak var listMenu: UIImageView!
     @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var mainView: UIView!
     
     var messageOriginalCenter: CGPoint!
     var leftIconOriginalCenter: CGPoint!
     var rightIconOriginalCenter: CGPoint!
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.contentSize = feedImageView.image!.size
+        
+        var edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: "panEdge:")
+        edgeGesture.edges = UIRectEdge.Left
+        mainView.addGestureRecognizer(edgeGesture)
 
         // Do any additional setup after loading the view.
     }
@@ -120,7 +127,7 @@ class MailboxViewController: UIViewController {
             } else if translation.x > 260 {
                 self.messageView.alpha = 0
                 self.deleteIcon.alpha = 0
-                delay(0.5, closure: { () -> () in
+                delay(0.3, closure: { () -> () in
                     UIView.animateWithDuration(0.3, animations: { () -> Void in
                         self.feedImageView.center.y -= 86
                     })
@@ -129,7 +136,7 @@ class MailboxViewController: UIViewController {
             } else if translation.x > 60 && translation.x <= 260 {
                 self.messageView.alpha = 0
                 self.archiveIcon.alpha = 0
-                delay(0.5, closure: { () -> () in
+                delay(0.3, closure: { () -> () in
                     UIView.animateWithDuration(0.3, animations: { () -> Void in
                         self.feedImageView.center.y -= 86
                     })
@@ -184,6 +191,32 @@ class MailboxViewController: UIViewController {
                 })
         }
     }
+
+    
+    
+    @IBAction func panEdge(sender: UIScreenEdgePanGestureRecognizer) {
+        // Absolute (x,y) coordinates in parent view
+        var point = sender.locationInView(view)
+        // Relative change in (x,y) coordinates from where gesture began.
+        var translation = sender.translationInView(view)
+        var velocity = sender.velocityInView(view)
+
+        if sender.state == UIGestureRecognizerState.Ended {
+            mainView.center = CGPoint(x: self.view.center.x, y: self.view.center.y)
+            
+        }
+        if translation.x >= 0 {
+            mainView.center = CGPoint(x: self.view.center.x + translation.x, y: self.view.center.y)
+        }
+        
+        if translation.x < 0 {
+            
+            mainView.center = CGPoint(x: self.view.center.x, y: self.view.center.y)
+        }
+        
+    }
+    
+    
 
     /*
     // MARK: - Navigation
