@@ -18,6 +18,9 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var laterIcon: UIImageView!
     @IBOutlet weak var archiveIcon: UIImageView!
     @IBOutlet weak var deleteIcon: UIImageView!
+    @IBOutlet weak var rescheduleMenu: UIImageView!
+    @IBOutlet weak var listMenu: UIImageView!
+    @IBOutlet weak var menuView: UIView!
     
     var messageOriginalCenter: CGPoint!
     var leftIconOriginalCenter: CGPoint!
@@ -102,7 +105,35 @@ class MailboxViewController: UIViewController {
         } else if sender.state == UIGestureRecognizerState.Ended {
             
             if translation.x < -260 {
-                self.performSegueWithIdentifier("showOptionSegue", sender: nil)
+                self.messageView.alpha = 0
+                self.listIcon.alpha = 0
+                self.menuView.hidden = false
+                self.rescheduleMenu.hidden = true
+                self.listMenu.hidden = false
+                
+            } else if translation.x > -260 && translation.x < -60 {
+                self.messageView.alpha = 0
+                self.laterIcon.alpha = 0
+                self.menuView.hidden = false
+                self.rescheduleMenu.hidden = false
+                self.listMenu.hidden = true
+            } else if translation.x > 260 {
+                self.messageView.alpha = 0
+                self.deleteIcon.alpha = 0
+                delay(0.5, closure: { () -> () in
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        self.feedImageView.center.y -= 86
+                    })
+                })
+               
+            } else if translation.x > 60 && translation.x <= 260 {
+                self.messageView.alpha = 0
+                self.archiveIcon.alpha = 0
+                delay(0.5, closure: { () -> () in
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        self.feedImageView.center.y -= 86
+                    })
+                })
             }
             
             UIView.animateWithDuration(0.3, animations: { () -> Void in
@@ -112,13 +143,45 @@ class MailboxViewController: UIViewController {
                 self.archiveIcon.center = self.leftIconOriginalCenter
                 self.deleteIcon.center = self.leftIconOriginalCenter
                 }, completion: { (Bool) -> Void in
-                self.messageBackgroundView.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+//                self.messageBackgroundView.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
                     
             })
             
            
             print("Gesture ended at: \(point)-\(translation)-\(velocity) ")
 
+        }
+    }
+    
+    @IBAction func tapRescheduleMenu(sender: UITapGestureRecognizer) {
+        self.menuView.hidden = true
+        self.rescheduleMenu.hidden = true
+        self.listMenu.hidden = true
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.feedImageView.center.y -= 86
+            }) { (Bool) -> Void in
+                self.messageView.alpha = 1
+                delay(0.5, closure: { () -> () in
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        self.feedImageView.center.y += 86
+                    })
+                })
+        }
+    }
+    
+    @IBAction func tapListMenu(sender: UITapGestureRecognizer) {
+        self.menuView.hidden = true
+        self.rescheduleMenu.hidden = true
+        self.listMenu.hidden = true
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.feedImageView.center.y -= 86
+            }) { (Bool) -> Void in
+                self.messageView.alpha = 1
+                delay(0.5, closure: { () -> () in
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        self.feedImageView.center.y += 86
+                    })
+                })
         }
     }
 

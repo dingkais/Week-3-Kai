@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B0486B4D1BF05AF000A7FFED /* ListOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0486B4C1BF05AF000A7FFED /* ListOptionViewController.swift */; };
+		B0486B4F1BF0684900A7FFED /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0486B4E1BF0684900A7FFED /* Common.swift */; };
 		B0A68ABF1BEF11290093E6E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A68ABE1BEF11290093E6E0 /* AppDelegate.swift */; };
 		B0A68AC11BEF11290093E6E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A68AC01BEF11290093E6E0 /* ViewController.swift */; };
 		B0A68AC41BEF11290093E6E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0A68AC21BEF11290093E6E0 /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B0486B4C1BF05AF000A7FFED /* ListOptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListOptionViewController.swift; path = ../ListOptionViewController.swift; sourceTree = "<group>"; };
+		B0486B4E1BF0684900A7FFED /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		B0A68ABB1BEF11290093E6E0 /* Mailbox - Kai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mailbox - Kai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A68ABE1BEF11290093E6E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0A68AC01BEF11290093E6E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 			children = (
 				B0A68AEE1BEF16AD0093E6E0 /* View Controller */,
 				B0A68ABE1BEF11290093E6E0 /* AppDelegate.swift */,
+				B0486B4E1BF0684900A7FFED /* Common.swift */,
 				B0A68AC01BEF11290093E6E0 /* ViewController.swift */,
 				B0A68AC21BEF11290093E6E0 /* Main.storyboard */,
 				B0A68AC51BEF11290093E6E0 /* Assets.xcassets */,
@@ -135,6 +140,7 @@
 			children = (
 				B0A68AEF1BEF34110093E6E0 /* OptionViewController.swift */,
 				B0A68AEC1BEF169A0093E6E0 /* MailboxViewController.swift */,
+				B0486B4C1BF05AF000A7FFED /* ListOptionViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -273,9 +279,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0486B4D1BF05AF000A7FFED /* ListOptionViewController.swift in Sources */,
 				B0A68AC11BEF11290093E6E0 /* ViewController.swift in Sources */,
 				B0A68AF01BEF34110093E6E0 /* OptionViewController.swift in Sources */,
 				B0A68ABF1BEF11290093E6E0 /* AppDelegate.swift in Sources */,
+				B0486B4F1BF0684900A7FFED /* Common.swift in Sources */,
 				B0A68AED1BEF169A0093E6E0 /* MailboxViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
